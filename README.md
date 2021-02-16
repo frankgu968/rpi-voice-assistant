@@ -4,7 +4,8 @@ A Raspberry Pi based voice assistant running logic on Voiceflow
 ## Preparation
 
 ### Hardware
-You must have a Python3-enabled system with audio input/output capability.
+You must have a Python3-enabled system with audio input/output capability. 
+The audio capture device must be capable of capturing at 16Khz. 
 
 ### System dependencies
 This application requires the `PyAudio` package that has system dependencies: 
