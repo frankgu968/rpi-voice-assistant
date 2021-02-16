@@ -42,6 +42,7 @@ def main():
     )
 
     with audio.MicrophoneStream(RATE, CHUNK) as stream:
+        print("Starting voice assistant!")
         while True:
             pcm = stream.get_sync_frame()
             if len(pcm) == 0:
