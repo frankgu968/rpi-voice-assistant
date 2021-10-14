@@ -71,6 +71,7 @@ def main():
 
                     # Send request to VF service and get response
                     response = vf.interact(config["vf_DiagramID"], config["vf_VersionID"], utterance)
+                    
                     for item in response["trace"]:
                         if item["type"] == "speak":
                             payload = item["payload"]

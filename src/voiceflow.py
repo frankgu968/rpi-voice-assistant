@@ -33,8 +33,11 @@ class Voiceflow:
         "type": 'text',
         "payload": input,
       },
+      "config": {
+        "tts": "true",
+      },
     }
-    response = requests.post(urljoin(self.url, "/interact/"+versionID), json=body).json()
+    response = requests.post(urljoin(self.url, "/interact/"+versionID), json=body, headers={"Authorization":self.apiKey}).json()
 
     # Save state
     self.stateStore.put(response["state"])
@@ -64,5 +67,5 @@ class Voiceflow:
       "request": None,
     }
 
-    response = requests.post(urljoin(self.url, "/interact/"+versionID), json=initiateSession).json()
+    response = requests.post(urljoin(self.url, "/interact/"+versionID), json=initiateSession, headers={"Authorization":self.apiKey}).json()
     return response["state"]

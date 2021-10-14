@@ -1,5 +1,4 @@
 from gtts import gTTS
-import playsound
 import pyaudio
 import queue
 import base64
@@ -119,14 +118,20 @@ def play(encoding_str):
     decode_bytes = base64.b64decode(encoding_str.split("data:audio/mpeg;base64,",1)[1])
     with open(filename, "wb") as wav_file:
         wav_file.write(decode_bytes)
-    playsound.playsound(filename, block=True)
+    mp3_play(filename)
 
 # Text-to-speech using Google TTS
 def speak(text):
     tts = gTTS(text=text, lang='en')
     filename = '/tmp/tts.mp3'
     tts.save(filename)
-    playsound.playsound(filename, block=True)
+    mp3_play(filename)
 
 def beep():
-    playsound.playsound(SYS_BEEP_PATH, block=True)
+    wav_play(SYS_BEEP_PATH)
+
+def mp3_play(filename):
+    os.system('mpg123 ' + filename)
+
+def wav_play(filename):
+    os.system('aplay ' + filename)
