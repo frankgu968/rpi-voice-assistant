@@ -4,7 +4,6 @@ import struct
 import sys
 import yaml
 import pvporcupine
-import playsound
 from google.cloud import speech_v1 as speech
 
 import audio
