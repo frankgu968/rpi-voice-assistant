@@ -46,26 +46,7 @@ class Voiceflow:
     return response
 
   def initState(self, diagramID, versionID):
-    initiateSession = {
-      "state": {
-        "stack": [
-          {
-            "diagramID": diagramID,
-            "storage": {},
-            "variables": {},
-          },
-        ],
-        "turn": {},
-        "storage": {},
-        "variables": {
-          "timestamp": 0,
-          "sessions": 1,
-          "user_id": 'TEST_USER',
-          "platform": 'general',
-        },
-      },
-      "request": None,
-    }
+    initialState = requests.get(urljoin(self.url, "/interact/"+versionID+"/state"), headers={"Authorization":self.apiKey}).json()
 
-    response = requests.post(urljoin(self.url, "/interact/"+versionID), json=initiateSession, headers={"Authorization":self.apiKey}).json()
+    response = requests.post(urljoin(self.url, "/interact/"+versionID), json=initialState, headers={"Authorization":self.apiKey}).json()
     return response["state"]
